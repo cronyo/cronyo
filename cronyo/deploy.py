@@ -197,7 +197,7 @@ def create_update_lambda(role_arn, wiring):
         with open('cronyo.zip', 'rb') as zf:
             function_arn, version = aws_lambda('create_function',
                                                FunctionName=name,
-                                               Runtime='python3.7',
+                                               Runtime='python3.8',
                                                Role=role_arn,
                                                Handler=handler,
                                                MemorySize=memory,
@@ -209,7 +209,7 @@ def create_update_lambda(role_arn, wiring):
         logger.info('updating lambda function {}'.format(name))
         aws_lambda('update_function_configuration',
                    FunctionName=name,
-                   Runtime='python3.7',
+                   Runtime='python3.8',
                    Role=role_arn,
                    Handler=handler,
                    MemorySize=memory,
