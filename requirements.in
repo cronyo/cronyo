@@ -1,0 +1,4 @@
+awscli
+jmespath
+boto3
+click

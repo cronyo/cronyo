@@ -1,0 +1,10 @@
+config.json
+cronyo.zip
+*.pyc
+dist/**
+build/**
+cronyo.egg-info/**
+
+.idea/
+*.iml
+.tox/
