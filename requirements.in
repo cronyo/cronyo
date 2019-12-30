@@ -2,3 +2,4 @@ awscli
 jmespath
 boto3
 click
+pyyaml

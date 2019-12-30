@@ -72,12 +72,12 @@ WIRING = [
 
 def prepare_zip():
     from pkg_resources import resource_filename as resource
-    from json import dumps
+    from yaml import dump
     logger.info('creating/updating cronyo.zip')
     with ZipFile('cronyo.zip', 'w', ZIP_DEFLATED) as zipf:
-        info = ZipInfo('config.json')
+        info = ZipInfo('config.yml')
         info.external_attr = 0o664 << 16
-        zipf.writestr(info, dumps(config))
+        zipf.writestr(info, dump(config))
         zipf.write(resource('cronyo', 'config.py'), 'config.py')
         zipf.write(resource('cronyo', 'cronyo.py'), 'cronyo.py')
         zipf.write(resource('cronyo', 'logger.py'), 'logger.py')

@@ -1,0 +1,3 @@
+---
+  secret_key: "RANDOM_KEY"
+  namespace: cronyo
