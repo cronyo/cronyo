@@ -11,7 +11,7 @@ requires = [
     'jmespath>=0.9.0',
     'boto3>=1.3.0',
     'click>=6.6',
-    'pyyaml==5.1'
+    'oyaml>=0.9'
 ]
 
 setup(
