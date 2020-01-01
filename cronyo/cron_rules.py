@@ -2,7 +2,7 @@ from botocore.client import ClientError
 import json
 import secrets
 import hashlib
-import yaml
+import oyaml as yaml
 try:
     from cronyo import logger
     from cronyo.config import config, config_filename, generate_config
@@ -31,9 +31,10 @@ def _targets_for_rule(rule):
 def _export_rule(rule):
     export = {
         "name": rule["Name"],
-        "state": rule["State"],
-        "description": rule.get("Description"),
     }
+    if rule.get("Description") is not None:
+        export["description"] = rule.get("Description")
+    export["state"] = rule["State"]
 
     if "cron" in rule.get("ScheduleExpression"):
         export["cron"] = rule["ScheduleExpression"][5:-1]
