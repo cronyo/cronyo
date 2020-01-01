@@ -48,10 +48,11 @@ It will automatically configure two AWS Lambda functions (`cronyo-http_post` and
 * `cronyo deploy` - deploys the code and configs to AWS automatically.
 * `cronyo export` - exports all existing cron rules to yaml
 * `cronyo export --prefix` - exports all existing cron rules starting with `prefix` to yaml
-* `cronyo add http_get '{"url": "https://example.com"}' --cron 5 4 * * *` - sends an HTTP GET request to example.com at 4:05am every day
+* `cronyo add http_get '{"url": "https://example.com"}' --cron "5 4 * * ? *"` - sends an HTTP GET request to example.com at 4:05am every day
 * `cronyo disable cronyo-24a0b5504111d9b1d797` - disables cron with the name `cronyo-24a0b5504111d9b1d797`
 * `cronyo enable cronyo-24a0b5504111d9b1d797` - enables cron with the name `cronyo-24a0b5504111d9b1d797`
 * `cronyo delete cronyo-24a0b5504111d9b1d797` - deletes cron with the name `cronyo-24a0b5504111d9b1d797`
+* `cronyo update http_get '{"url": "https://example.com"}' --cron "5 4 * * ? *" --name myrule` - updates an existing rule
 
 ## Advanced
 
@@ -61,9 +62,17 @@ cronyo creates a name for your cron jobs automatically (unless a custom name is 
 
 cronyo comes with a (configurable) namespace -- `cronyo` by default. You can change the default using `cronyo configure`.
 
+### cron expressions
+
+cronyo supports `cron` or `rate` expresssions. See the [AWS
+docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) for specific info.
+
+Note that `--cron "<expr>"` must be surrounded by quotes, however `--rate` won't work with quotes. This is because cron
+expressions include characters like `*` which mess-up the CLI input.
+
 ### adding a cron job
 
-* `cronyo add http_get '{"url": "https://example.com"}' --cron 5 4 * * *` will send an HTTP GET request to example.com at 4:05am every day
+* `cronyo add http_get '{"url": "https://example.com"}' --cron "5 4 * * ? *"` will send an HTTP GET request to example.com at 4:05am every day
 * `cronyo add http_post '{"url": "https://example.com"}' --rate 5 minutes` will send an HTTP POST request to example.com every 5 minutes
 * `cronyo add http_post '{"url": "https://example.com", "headers": {"User-Agent": "007"}, "cookies": {"biscuit": "oreo"}, "params": {"a": "b"}, "data": {"key": "value"}}' --rate 5 minutes` will send an HTTP POST with custom cookies, headers, URL params and form data.
 * `cronyo add arn:aws:lambda:us-east-1:313623401231:function:cronyo-http_post:live '{"url": "https://example.com"}' --rate 5 minutes` will call a lambda function with a specific ARN with given event paramaters every 5 minutes

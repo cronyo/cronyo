@@ -66,7 +66,24 @@ def add(cron_expression,
         name=_namespaced(secrets.token_hex(10)),
         description=None):
 
+    rules = _find([name, _namespaced(name)])
+    if len(rules) > 0:
+        logger.warn("rule with name {} already exists. "
+                    "Use `update` instead?".format(name))
+        return
+
     put(name, cron_expression, target_arn, target_input, description)
+
+
+def update(cron_expression,
+        target_arn,
+        target_input,
+        name=_namespaced(secrets.token_hex(10)),
+        description=None):
+
+    rules = _find([name, _namespaced(name)])
+    if len(rules) > 0:
+        put(name, cron_expression, target_arn, target_input, description)
 
 
 def _find(names):
@@ -115,6 +132,7 @@ def disable(name):
 def enable(name):
     rules = _find([name, _namespaced(name)])
     _enable(rules)
+
 
 def _get_target_arn(name):
     try:

@@ -46,18 +46,22 @@ def export(prefix):
     cron_rules.export(prefix)
 
 
+def _cron_expression(cron, rate):
+    if len(cron) == 0:
+        return "rate({0})".format(" ".join(rate))
+    else:
+        return "cron({0})".format(cron)
+
+
 @cli.command()
 @click.argument('lambda_function')
 @click.argument('lambda_args')
-@click.option('--cron', nargs=6, type=str)
+@click.option('--cron', nargs=1, type=str)
 @click.option('--rate', nargs=2, type=str)
 @click.option('--name', default=None)
 @click.option('--description', default=None)
 def add(lambda_function, lambda_args, cron, rate, name, description):
-    if len(cron) == 0:
-        cron_expression = "rate({0})".format(" ".join(rate))
-    else:
-        cron_expression = "cron({0})".format(" ".join(cron))
+    cron_expression = _cron_expression(cron, rate)
 
     if name:
         cron_rules.add(
@@ -74,6 +78,25 @@ def add(lambda_function, lambda_args, cron, rate, name, description):
             target_input=json.loads(lambda_args),
             description=description
         )
+
+
+@cli.command()
+@click.argument('lambda_function')
+@click.argument('lambda_args')
+@click.option('--cron', nargs=1, type=str)
+@click.option('--rate', nargs=2, type=str)
+@click.option('--name', required=True)
+@click.option('--description', default=None)
+def update(lambda_function, lambda_args, cron, rate, name, description):
+    cron_expression = _cron_expression(cron, rate)
+
+    cron_rules.update(
+        cron_expression,
+        lambda_function,
+        target_input=json.loads(lambda_args),
+        name=name,
+        description=description
+    )
 
 
 @cli.command()
