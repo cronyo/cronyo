@@ -50,12 +50,12 @@ def _export_rule(rule):
     return export
 
 
-def export(name_prefix, all=False):
+def export(prefix):
     logger.info('exporting rules')
-    if all:
+    if prefix is None:
         rules = events("list_rules", EventBusName="default")['Rules']
     else:
-        rules = events("list_rules", EventBusName="default", NamePrefix=name_prefix)['Rules']
+        rules = events("list_rules", EventBusName="default", NamePrefix=prefix)['Rules']
     print(yaml.dump([_export_rule(rule) for rule in rules]))
 
 

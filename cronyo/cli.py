@@ -41,9 +41,9 @@ def deploy(preflight):
 
 
 @cli.command()
-@click.option('--all', is_flag=True)
-def export(all):
-    cron_rules.export(NAMESPACE, all)
+@click.option('--prefix')
+def export(prefix):
+    cron_rules.export(prefix)
 
 
 @cli.command()
