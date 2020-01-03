@@ -42,7 +42,7 @@ It will automatically configure two AWS Lambda functions (`cronyo-http_post` and
 
 ### Intro
 
-[![asciicast](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp.svg)](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp)
+[![asciicast](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp.svg)](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp?speed=1.2)
 
 ## Examples
 
