@@ -47,7 +47,7 @@ def export(prefix):
 
 
 def _cron_expression(cron, rate):
-    if len(cron) == 0:
+    if cron is None:
         return "rate({0})".format(" ".join(rate))
     else:
         return "cron({0})".format(cron)
