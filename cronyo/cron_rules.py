@@ -102,9 +102,9 @@ def _find(names):
 
 def _delete(rules):
     for rule in rules:
-        logger.info("deleting rule {}".format(rule["Name"]))
         events("remove_targets", Rule=rule["Name"], Ids=["1"])
         events("delete_rule", Name=rule["Name"])
+        logger.info("rule {} deleted".format(rule["Name"]))
 
 
 def _disable(rules):
@@ -121,6 +121,8 @@ def _enable(rules):
 
 def delete(name):
     rules = _find([name, _namespaced(name)])
+    for rule in rules:
+        logger.info("deleting rule:\n{}".format(yaml.dump(_export_rule(rule))))
     _delete(rules)
 
 
@@ -157,8 +159,8 @@ def put(name,
         logger.error("unable to find lambda function for {}".format(function_name))
         return
 
-    logger.info(
-        "creating / updating cron rule {0}: {1} for target {2}".format(
+    logger.debug(
+        "create / update cron rule {0}: {1} for target {2}".format(
             name,
             cron_expression,
             target_arn
@@ -201,3 +203,6 @@ def put(name,
         )
     except ClientError as error:
         logger.debug("permission already set. {}".format(error))
+
+    for rule in _find([name]):
+        logger.info("rule created/updated:\n{}".format(yaml.dump(_export_rule(rule))))
