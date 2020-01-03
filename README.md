@@ -40,6 +40,10 @@ $ cronyo deploy # (optional, if you want to use the http POST/GET lambdas)
 
 It will automatically configure two AWS Lambda functions (`cronyo-http_post` and `cronyo-http_get`)
 
+### Intro
+
+[![asciicast](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp.svg)](https://asciinema.org/a/GT9xw6LwMGhKg1fi8EOAnEhsp)
+
 ## Examples
 
 * `cronyo --help` - prints a help screen.
