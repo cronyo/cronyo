@@ -46,7 +46,7 @@ def _export_rule(rule):
         target = targets[0]
         export["target"] = {
             "name": target["Arn"].split("function:")[-1],
-            "input": json.loads(target["Input"])
+            "input": json.loads(target.get("Input", "{}"))
         }
     return export
 
