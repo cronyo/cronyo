@@ -4,12 +4,16 @@ The missing cron CLI for AWS Cloudwatch and Lambda
 
 ## What is it?
 
-A simple CLI + Lambda functions to manage your cron jobs on AWS
+Do you have an AWS account? Great. Do you want to run cron jobs in the cloud? 
+
+Cronyo provides A simple CLI to manage your cron jobs on AWS.
+
+In addition, Cronyo can instantly deploy a couple of super-simple, helpful and secure lambda functions to perform HTTP GET/POST requests for you. So if you need to trigger any webhooks on schedule, and AWS account and Cronyo is all you need :)
 
 Key Features:
 
 * Simple command line interface to manage cron jobs (much simpler than
-  [aws events put-rules, aws lambda add-permission, aws events put-targets](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/RunLambdaSchedule.html) or Cloudformation)
+  [aws events put-rules, aws lambda add-permission, aws events put-targets](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/RunLambdaSchedule.html), Cloudformation, or Terraform)
 * Pre-built AWS Lambda functions for simple HTTP GET/POST requests, or use your own lambdas.
 * Cost Effective (you'll need a TON of cron rules to worry about costs).
 * Simple but Secure (HTTP GET/POST include an HMAC signature so you can validate the request is genuine).
