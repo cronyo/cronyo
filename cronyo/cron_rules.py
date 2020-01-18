@@ -51,12 +51,15 @@ def _export_rule(rule):
     return export
 
 
-def export(prefix):
+def export(prefix, search):
     logger.info('exporting rules')
-    if prefix is None:
-        rules = events("list_rules", EventBusName="default")['Rules']
-    else:
-        rules = events("list_rules", EventBusName="default", NamePrefix=prefix)['Rules']
+    kwargs = {"EventBusName": "default"}
+    if prefix is not None:
+        kwargs["NamePrefix"] = prefix
+    if search is not None:
+        query = "Rules[?contains(Name, '{0}')] | {{Rules: @}}".format(search)
+        kwargs["query"] = query
+    rules = events("list_rules", **kwargs)['Rules']
     print(yaml.dump([_export_rule(rule) for rule in rules]))
 
 

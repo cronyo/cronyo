@@ -42,8 +42,9 @@ def deploy(preflight):
 
 @cli.command()
 @click.option('--prefix')
-def export(prefix):
-    cron_rules.export(prefix)
+@click.option('--search')
+def export(prefix, search):
+    cron_rules.export(prefix, search)
 
 
 def _cron_expression(cron, rate):

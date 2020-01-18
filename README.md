@@ -56,6 +56,7 @@ It will automatically configure two AWS Lambda functions (`cronyo-http_post` and
 * `cronyo deploy` - deploys the code and configs to AWS automatically.
 * `cronyo export` - exports all existing cron rules to yaml
 * `cronyo export --prefix` - exports all existing cron rules starting with `prefix` to yaml
+* `cronyo export --search` - exports all existing cron rules matching the search string anywhere in the name
 * `cronyo add http_get '{"url": "https://example.com"}' --cron "5 4 * * ? *"` - sends an HTTP GET request to example.com at 4:05am every day
 * `cronyo disable cronyo-24a0b5504111d9b1d797` - disables cron with the name `cronyo-24a0b5504111d9b1d797`
 * `cronyo enable cronyo-24a0b5504111d9b1d797` - enables cron with the name `cronyo-24a0b5504111d9b1d797`
