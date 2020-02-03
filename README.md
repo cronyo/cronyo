@@ -51,7 +51,7 @@ It will automatically configure two AWS Lambda functions (`cronyo-http_post` and
 ## Examples
 
 * `cronyo --help` - prints a help screen.
-* `cronyo configure` - opens your editor so you can edit the config.json file. Use it to update your redis settings.
+* `cronyo configure` - opens your editor so you can edit the config.json file. Use it to update your namespace and signing key.
 * `cronyo preflight` - runs preflight checks to make sure you have access to AWS.
 * `cronyo deploy` - deploys the code and configs to AWS automatically.
 * `cronyo export` - exports all existing cron rules to yaml
