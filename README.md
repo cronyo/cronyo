@@ -8,7 +8,7 @@ Do you have an AWS account? Great. Do you want to run cron jobs in the cloud?
 
 Cronyo provides A simple CLI to manage your cron jobs on AWS.
 
-In addition, Cronyo can instantly deploy a couple of super-simple, helpful and secure lambda functions to perform HTTP GET/POST requests for you. So if you need to trigger any webhooks on schedule, and AWS account and Cronyo is all you need :)
+In addition, Cronyo can instantly deploy a couple of super-simple, helpful and secure lambda functions to perform HTTP GET/POST requests for you. So if you need to trigger any webhooks on schedule, an AWS account and Cronyo is all you need :)
 
 Key Features:
 
