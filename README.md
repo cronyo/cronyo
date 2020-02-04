@@ -73,7 +73,7 @@ cronyo comes with a (configurable) namespace -- `cronyo` by default. You can cha
 
 ### cron expressions
 
-cronyo supports `cron` or `rate` expresssions. See the [AWS
+cronyo supports `cron` or `rate` expressions. See the [AWS
 docs](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) for specific info.
 
 Note that `--cron "<expr>"` must be surrounded by quotes, however `--rate` won't work with quotes. This is because cron
